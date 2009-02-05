@@ -1,12 +1,14 @@
 # SpecialWarning
 module SpecialWarning
   def self.warning(warn)
-    warn = "WARNING: #{choice_equal_point_trace(caller[1..-1])} #{warn}"
-    puts warn
-    if Rails.logger || Rails.logger.debug?
-      Rails.logger.debug(warn)
-      trace = clean_trace(caller[1..-1]).join("\n     ")
-      Rails.logger.debug(trace) unless trace.empty?
+    point_trace = choice_equal_point_trace(caller[1..-1])
+    unless point_trace.empty?
+      warn = "WARNING: #{point_trace} #{warn}"
+      puts warn
+      if Rails.logger || Rails.logger.debug?
+        trace = ([warn] + clean_trace(caller[1..-1])).join("\n     ")
+        Rails.logger.debug(trace) unless trace.empty?
+      end
     end
   end
 
