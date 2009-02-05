@@ -1,6 +1,6 @@
 = SpecialWarning
 
-== Overview
+== 概要
 
 SpecialWarningはRailsアプリケーションを作成する際にBugになりやすい箇所を警告するプラグインです．
 現在，SpecialWarningが警告する箇所は以下の通りです．
@@ -8,8 +8,15 @@ SpecialWarningはRailsアプリケーションを作成する際にBugになり�
 * 数値と文字列の比較
 
 警告は標準出力に出力し，そのバックトレースはlogに出力します．
+このプラグインはproduction環境では動作しません．
 
-== Example
+== 例
+
+ # Warning!
+ "1" == 1
+
+ # OK
+ 1 == 1
 
  class FooController < ApplicationController
    def index
@@ -25,7 +32,7 @@ SpecialWarningはRailsアプリケーションを作成する際にBugになり�
    end
  end
 
-== Hack
+== ハックしたい！
 
 その他，警告を出す箇所を増やしたい場合は，
  special_warning/lib/specal_warning/
