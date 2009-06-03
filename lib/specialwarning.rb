@@ -1,7 +1,11 @@
 # SpecialWarning
 module SpecialWarning
+  @@expect_libs = %w(lib/action_controller/routing)
+
   def self.warning(warn)
     point_trace = choice_equal_point_trace(caller[1..-1])
+    return if warn_expect?(point_trace)
+
     unless point_trace.empty?
       warn = "WARNING: #{point_trace} #{warn}"
       puts warn
@@ -23,6 +27,13 @@ module SpecialWarning
   def self.choice_equal_point_trace(trace)
     choice_trace = trace.reject{|t| VENDOR_RAILS_REGEXP =~ t}.first
     return choice_trace ? "#{choice_trace} :" : ""
+  end
+
+  def self.warn_expect?(point_trace)
+    @@expect_libs.inject(false) do |res, lib|
+      res = true if point_trace.include?(lib)
+      res
+    end
   end
 end
 

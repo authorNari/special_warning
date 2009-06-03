@@ -2,7 +2,7 @@
 
 == 概要
 
-SpecialWarningはRailsアプリケーションを作成する際にBugになりやすい箇所を警告するプラグインです．
+SpecialWarningはRailsアプリケーションを作成する際にバグになりやすい箇所を警告するプラグインです．
 現在，SpecialWarningが警告する箇所は以下の通りです．
 
 * 数値と文字列の比較
@@ -31,6 +31,13 @@ SpecialWarningはRailsアプリケーションを作成する際にBugになり�
      params["numeric"].to_i == 1
    end
  end
+
+== インストール
+
+RAILS_ROOTで以下のコマンドを打ち込んでください．
+
+  $ script/plugin install \
+    git://github.com/authorNari/special_warning.git
 
 == ハックしたい！
 
